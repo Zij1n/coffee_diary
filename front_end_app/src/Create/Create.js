@@ -10,7 +10,7 @@ import { Stack } from "@mui/system";
 import { useNavigate } from "react-router";
 import Steps from "./Steps";
 import Typography from '@mui/material/Typography'
-const CREATE_URL = "http://localhost:5000/create";
+const CREATE_URL = "/create";
 
 export default function Create() {
   const navigate = useNavigate();
