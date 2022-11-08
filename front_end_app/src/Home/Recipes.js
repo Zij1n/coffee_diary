@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Steps from "../Create/Steps";
 
-const RECIPE_URL = "http://localhost:3000/recipes";
+const RECIPE_URL = "http://localhost:5000/recipes";
 
 export default  function Recipes() {
  
