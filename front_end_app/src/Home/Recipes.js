@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Steps from "../Create/Steps";
 
-const RECIPE_URL = "http://localhost:5000/recipes";
+const RECIPE_URL = "http://149.28.232.23:5000/recipes";
 
 export default  function Recipes() {
  
@@ -21,7 +21,7 @@ export default  function Recipes() {
       },
     })
       .then((response) => response.json())
-      .then((data) => setrecipes(data));
+      .then((data) => setrecipes(data)).catch(err => console.log(err));
   };
   useEffect(loadRecipe, []);
   console.log(recipes);
