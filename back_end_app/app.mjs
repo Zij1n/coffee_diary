@@ -55,9 +55,9 @@ const handleRecipes = async (req,res) =>{
 // app.post("/login", handleLogin);
 // app.post("/home", handleHome);pp.post("/brew", hadnleBrew); //send recipe to frontend
 // app.post("/feedback", handleFeedBack); //add feedback and record to db
-app.options('/create', cors())
+// app.options('/create', cors())
 app.post("/create", handleCreate); //add new recipe to db
-app.options('/recipes', cors())
+// app.options('/recipes', cors())
 app.post("/recipes",handleRecipes)
 // app.post("/record", handleRecord); //send record to frontend
 app.listen(process.env.PORT || 5000);
