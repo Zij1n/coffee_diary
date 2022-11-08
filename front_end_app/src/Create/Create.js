@@ -5,12 +5,12 @@ import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import { Stack } from "@mui/system";
 import { useNavigate } from "react-router";
 import Steps from "./Steps";
-
-const CREATE_URL="http://localhost:5000/record/add"
+import Typography from '@mui/material/Typography'
+const CREATE_URL = "http://localhost:5000/create";
 
 export default function Create() {
   const navigate = useNavigate();
@@ -18,10 +18,8 @@ export default function Create() {
   const [errorMessage, setErrorMessage] = useState("");
   const [error, setError] = useState(false);
 
-  useEffect(() => {
-    // save to db @!
-  }, [steps]);
-
+  const beanRef = useRef()
+  const equipRef=useRef()
   const handleSubmit = (event) => {
     setError(false);
     setErrorMessage("");
@@ -43,19 +41,19 @@ export default function Create() {
     event.preventDefault();
     // console.log("created clicked")
 
-    const newRecipe = { ...steps };
-    console.log(newRecipe);
+    const newTasks = steps;
+    const tasks = JSON.stringify({ brewEquip: equipRef.current.value, bean:beanRef.current.value, tasks: newTasks });
+    console.log(tasks)
     await fetch(CREATE_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newRecipe),
+      body: tasks,
     }).catch((error) => {
       window.alert(error);
       return;
     });
-
     navigate("/");
   };
 
@@ -71,8 +69,35 @@ export default function Create() {
             alignItems: "center",
           }}
         >
+          <Typography>What kind of equipment and coffee been is needed for this recipe?</Typography>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <TextField
+              margin="normal"
+              required
+              // fullWidth
+              multiline
+              id="Brew Equipment"
+              label="Brew Equipment"
+              name="Brew Equipment"
+              inputRef={equipRef}
+              autoFocus
+              sx={{ width: 1 / 2 }}
+            />
+            <TextField
+              margin="normal"
+              required
+              // fullWidth
+              multiline
+              id="Bean"
+              label="Bean"
+              name="Bean"
+              inputRef={beanRef}
+              autoFocus
+              sx={{ width: 1 / 2 }}
+            />
+          </Stack>
           <Steps steps={steps} />
-
+          <Typography>Add brewing instructions by cliking "ADD STEP". Click "Create" when you finish</Typography>
           <Grid
             component="form"
             onSubmit={handleSubmit}
