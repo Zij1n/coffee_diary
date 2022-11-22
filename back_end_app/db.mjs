@@ -19,6 +19,14 @@ const recipeSchema=new Schema({
 })
 const Recipe = mongoose.model("Recipe", recipeSchema);
 
+const recordSchema=new Schema({
+  feedback:String,
+  recipe: recipeSchema,
+  time: String
+})
+
+const record = mongoose.model("Record", recordSchema);
+
 const User = new Schema({
   title: String, // String is shorthand for {type: String}
   credential: String,
