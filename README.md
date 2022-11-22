@@ -1,6 +1,6 @@
 
 
-(__TODO__: your project name)
+
 
 # Coffee Diary
 
@@ -16,13 +16,13 @@ Features:
 
 ## Data Model
 
-(__TODO__: a description of your application's data and their relationships to each other) 
 
-`user`:
+
+<!-- `user`:
 
 + profile/credential
 + array of history brew records(`record`)
-+ stats
++ stats -->
 
 
 `record`
@@ -41,7 +41,7 @@ Features:
 + discription: what to do for this task?
 
 An Example User:
-
+<!-- 
 ```javascript
 {
   usr_name: "Anthony Douglas"
@@ -49,7 +49,7 @@ An Example User:
   records: //array of record
   stats: {numberOfRecord: 1}
 }
-```
+``` -->
 
 Example record:
 
@@ -99,7 +99,7 @@ example task
 
 ## User Stories or Use Cases
 
-1. as non-registered user, I can register a new account
+<!-- 1. as non-registered user, I can register a new account -->
 2. as a user, I can log in to the site
 3. as a user, I can create my own recipe by adding tasks
 4. as a user, I can share my recipe by generating a link pointing toward the record page

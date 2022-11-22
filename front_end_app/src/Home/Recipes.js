@@ -43,7 +43,7 @@ export default  function Recipes() {
         </AccordionSummary>
         <AccordionDetails>
           <Steps steps={recipe.tasks.tasks} />
-          <Button variant="contained" onClick={() => navigate("/Brew",{ state: { recipe:recipe} })}>Brew</Button>
+          <Button variant="contained" onClick={() => navigate("/Brew",{ state: { recipe:recipe} })}>Brew Now!</Button>
         </AccordionDetails>
       </Accordion>
     );
