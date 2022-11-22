@@ -6,10 +6,13 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Steps from "../Create/Steps";
+import Button from '@mui/material/Button';
+import { useNavigate } from "react-router";
 
 const RECIPE_URL = "/recipes";
 
 export default  function Recipes() {
+  const navigate = useNavigate()
  
   const [recipes, setrecipes] = useState([]);
 
@@ -40,6 +43,7 @@ export default  function Recipes() {
         </AccordionSummary>
         <AccordionDetails>
           <Steps steps={recipe.tasks.tasks} />
+          <Button variant="contained" onClick={() => navigate("/Brew",{ state: { recipe:recipe} })}>Brew</Button>
         </AccordionDetails>
       </Accordion>
     );
