@@ -1,0 +1,17 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run mytest",
+    "mytest": "./node_modules/.bin/mocha test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chromedriver": "^108.0.0",
+    "mocha": "^10.1.0",
+    "selenium-webdriver": "^4.7.0"
+  }
+}
