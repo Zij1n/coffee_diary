@@ -43,7 +43,7 @@ export default function Create() {
 
     const newTasks = steps;
     const tasks = JSON.stringify({ brewEquip: equipRef.current.value, bean:beanRef.current.value, tasks: newTasks });
-    console.log(tasks)
+    console.log("taskss:",tasks)
     await fetch(CREATE_URL, {
       method: "POST",
       headers: {

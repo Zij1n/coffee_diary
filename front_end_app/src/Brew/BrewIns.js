@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
-
+import MyTimer from "./MyTimer";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
 // {
 //   "_id": "636a3f008b8fa1b1f3e69926",
 //   "tasks": {
@@ -41,14 +45,48 @@ import { Button } from "@mui/material";
 // }
 
 export default function BrewIns({ recipe }) {
+  const [disable, setdisable] = useState(false);
+  const [i, seti] = useState(0);
+  let tasks = [...recipe.tasks.tasks];
+  const [curStep, setcurStep] = useState(tasks[0]);
+  useEffect(() => {
+    console.log(i);
+    if (i < tasks.length) {
+      setcurStep(tasks[i]);
+      // console.log(i);
+    } else {
+      setcurStep({ time: 0, description: "Finished" });
+      setdisable(true);
+      // console.log(curStep);
+    }
+  }, [i]);
+
+  const feedNextStep = () => {
+    seti(i + 1);
+  };
+  let probs = {
+    time: curStep.time,
+    step: curStep.description,
+    expirecb: feedNextStep,
+  };
   return (
     <div>
-      <h4>
-        Here should play some animation for brewing coffee instructions, which
-        is still working in progress. For now, just hit the finsh brewing button
-        to submit your reflection/feed back of this brew using the text field
-        below, and they will go into my backend db
-      </h4>
+      <Card sx={{ minWidth: 275 }}>
+        <CardContent>
+          <MyTimer probs={probs} />
+        </CardContent>
+        <CardActions>
+          <Button
+            variant="text"
+            size="small"
+            onClick={feedNextStep}
+            disabled={disable}
+          >
+            Next Step
+          </Button>
+        </CardActions>
+      </Card>
+
       {/* <Button
         variant="contained"
         onClick={() => navigate("/Brew", { state: { recipe: recipe } })}
