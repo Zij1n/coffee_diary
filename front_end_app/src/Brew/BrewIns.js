@@ -5,6 +5,8 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import {CircularProgress} from "@mui/material";
+import {Box} from "@mui/material";
 // {
 //   "_id": "636a3f008b8fa1b1f3e69926",
 //   "tasks": {
@@ -43,6 +45,29 @@ import Typography from "@mui/material/Typography";
 //   "brewEquip": "Chemex",
 //   "__v": 0
 // }
+function CircularProgressWithLabel(props) {
+  return (
+    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+      <CircularProgress variant="determinate" {...props} size="4rem"/>
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography variant="caption" component="div" color="text.secondary">
+          {`${Math.round(props.value)}%`}
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
 
 export default function BrewIns({ recipe }) {
   const [disable, setdisable] = useState(false);
@@ -71,8 +96,9 @@ export default function BrewIns({ recipe }) {
   };
   return (
     <div>
-      <Card sx={{ minWidth: 275 }}>
+      <Card sx={{ minWidth: 600 }}>
         <CardContent>
+        <CircularProgressWithLabel value={(i/tasks.length)*100} />
           <MyTimer probs={probs} />
         </CardContent>
         <CardActions>
