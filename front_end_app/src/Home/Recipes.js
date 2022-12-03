@@ -33,6 +33,16 @@ export default function Recipes() {
   console.log(recipes);
 
   const handleExport = (recipe) => {
+    let str=btoa(
+      JSON.stringify({
+        brewEquip: recipe.brewEquip,
+        bean: recipe.bean,
+        tasks: recipe.tasks.tasks.map((each) => {
+          return { time: each.time, description: each.description };
+        }),
+      })
+    );
+    alert(str)
     navigator.clipboard.writeText(
       btoa(
         JSON.stringify({
