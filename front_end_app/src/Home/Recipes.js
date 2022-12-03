@@ -42,7 +42,7 @@ export default function Recipes() {
         }),
       })
     );
-    alert(str)
+    prompt("Exported text:", str);
     navigator.clipboard.writeText(
       btoa(
         JSON.stringify({
