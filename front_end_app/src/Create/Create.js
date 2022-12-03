@@ -11,7 +11,9 @@ import { useNavigate } from "react-router";
 import Steps from "./Steps";
 import Typography from '@mui/material/Typography'
 const CREATE_URL = "/create";
-
+function isNumeric(value) {
+  return /^\d+$/.test(value);
+}
 export default function Create() {
   const navigate = useNavigate();
   const [steps, setSteps] = useState([]);
@@ -25,7 +27,7 @@ export default function Create() {
     setErrorMessage("");
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    if (data.get("description") && data.get("time")) {
+    if (data.get("description") && data.get("time")&&isNumeric(data.get("time"))) {
       const step = {
         description: data.get("description"),
         time: data.get("time"),
@@ -33,7 +35,7 @@ export default function Create() {
       setSteps((prev) => [...prev, step]);
     } else {
       setError(true);
-      setErrorMessage("You should write something here");
+      setErrorMessage("Wrong Fromat");
     }
   };
 
